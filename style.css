@@ -1,0 +1,310 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Cormorant Garamond', serif;
+    background:#0d0d0d;
+    overflow-x:hidden;
+    color:white;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(180deg,#050505,#181818);
+    z-index:-2;
+}
+
+/* ======================= */
+/* Page d'accueil */
+/* ======================= */
+
+#welcome{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.subtitle{
+    color:#d8c28f;
+    letter-spacing:4px;
+    font-size:18px;
+}
+
+.initials{
+
+    font-family:'Great Vibes', cursive;
+    font-size:80px;
+    margin:20px 0;
+    color:white;
+
+}
+
+/* ======================= */
+/* Enveloppe */
+/* ======================= */
+
+.envelope{
+
+    position:relative;
+    width:320px;
+    height:210px;
+    cursor:pointer;
+
+}
+
+.envelope::before{
+
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#efe3cf;
+    border-radius:8px;
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+
+}
+
+.top{
+
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#e5d3b8;
+
+    clip-path:polygon(0 0,100% 0,50% 60%);
+    transform-origin:top;
+    transition:1s;
+
+    z-index:4;
+
+}
+
+.envelope.open .top{
+
+    transform:rotateX(180deg);
+
+}
+
+.letter{
+
+    position:absolute;
+
+    left:15px;
+    right:15px;
+    bottom:15px;
+
+    height:170px;
+
+    background:white;
+
+    border-radius:6px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#222;
+
+    font-size:34px;
+
+    transition:1s;
+
+    z-index:2;
+
+}
+
+.envelope.open .letter{
+
+    transform:translateY(-160px);
+
+}
+
+.click-text{
+
+    margin-top:40px;
+
+    color:#d8c28f;
+
+    animation:blink 1.2s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:.3;
+    }
+
+}
+
+/* ======================= */
+/* Invitation */
+/* ======================= */
+
+.hidden{
+
+    display:none;
+
+}
+
+#invitation{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px 20px;
+
+}
+
+.card{
+
+    width:100%;
+    max-width:700px;
+
+    background:white;
+
+    color:#222;
+
+    border-radius:20px;
+
+    padding:50px;
+
+    text-align:center;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+    animation:fadeUp .9s;
+
+}
+
+.card h1{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:60px;
+
+}
+
+.card span{
+
+    font-size:42px;
+
+    display:block;
+
+    margin:15px;
+
+}
+
+.message{
+
+    margin:35px 0;
+
+    font-size:22px;
+
+}
+
+.info p{
+
+    margin:15px;
+
+    font-size:22px;
+
+}
+
+.buttons{
+
+    margin-top:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    text-decoration:none;
+
+    background:#b88b3d;
+
+    color:white;
+
+    padding:16px;
+
+    border-radius:40px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#8f6828;
+
+    transform:scale(1.03);
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ======================= */
+/* Mobile */
+/* ======================= */
+
+@media(max-width:768px){
+
+    .initials{
+
+        font-size:60px;
+
+    }
+
+    .envelope{
+
+        width:280px;
+        height:180px;
+
+    }
+
+    .card{
+
+        padding:30px;
+
+    }
+
+    .card h1{
+
+        font-size:45px;
+
+    }
+
+}
