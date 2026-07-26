@@ -4,34 +4,35 @@ const invitation = document.getElementById("invitation");
 
 envelope.addEventListener("click", () => {
 
-    // Empêche plusieurs clics
     if (envelope.classList.contains("open")) return;
 
-    // Ouvre l'enveloppe
     envelope.classList.add("open");
 
-    // Petit délai pour laisser jouer l'animation
+    // Lorsque la lettre est sortie
     setTimeout(() => {
 
-        // Fait disparaître l'écran d'accueil
+        envelope.classList.add("fade-out");
+
+    }, 1500);
+
+    // Puis on affiche l'invitation
+    setTimeout(() => {
+
         welcome.style.opacity = "0";
-        welcome.style.transition = "1s";
 
         setTimeout(() => {
 
             welcome.style.display = "none";
 
-            // Affiche l'invitation
             invitation.classList.remove("hidden");
             invitation.style.display = "flex";
 
-            // Défilement fluide
-            invitation.scrollIntoView({
-                behavior: "smooth"
+            requestAnimationFrame(() => {
+                invitation.classList.add("show");
             });
 
-        }, 1000);
+        }, 600);
 
-    }, 1800);
+    }, 2400);
 
 });

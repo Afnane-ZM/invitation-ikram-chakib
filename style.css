@@ -396,3 +396,56 @@ body{
         font-size:45px;
     }
 }
+
+/* Animation de la lettre */
+.letter{
+    transition: transform 1.3s cubic-bezier(.22,1,.36,1);
+}
+
+.envelope.open .letter{
+    transform: translateY(-240px) scale(1.05);
+}
+
+/* Rabat plus fluide */
+.top{
+    transition: transform 1.2s cubic-bezier(.68,-0.4,.27,1.5);
+}
+
+/* Cachet */
+.seal{
+    transition: transform .7s ease, opacity .7s ease;
+}
+
+.envelope.open .seal{
+    transform: translate(-50%,-50%) scale(.4) rotate(25deg);
+    opacity:0;
+}
+
+/* Disparition de l'enveloppe */
+.envelope.fade-out{
+    animation: envelopeOut .8s forwards;
+}
+
+@keyframes envelopeOut{
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+    100%{
+        opacity:0;
+        transform:scale(.75) translateY(80px);
+        filter:blur(8px);
+    }
+}
+
+/* Apparition de l'invitation */
+#invitation{
+    opacity:0;
+    transform:scale(.92);
+    transition:1s ease;
+}
+
+#invitation.show{
+    opacity:1;
+    transform:scale(1);
+}
