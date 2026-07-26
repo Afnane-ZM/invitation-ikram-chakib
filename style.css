@@ -1,3 +1,13 @@
+:root{
+    --wine-dark:#2b0810;
+    --wine:#4a1120;
+    --wine-mid:#6b1c2c;
+    --cream:#f7ecdb;
+    --cream-dark:#e9d9bd;
+    --gold:#c9a463;
+    --ink:#2c1810;
+}
+
 *{
     margin:0;
     padding:0;
@@ -6,15 +16,17 @@
 
 body{
     font-family:'Cormorant Garamond', serif;
-    background:#0d0d0d;
+    background:var(--wine-dark);
     overflow-x:hidden;
-    color:white;
+    color:var(--cream);
 }
 
 .background{
     position:fixed;
     inset:0;
-    background:linear-gradient(180deg,#050505,#181818);
+    background:
+        radial-gradient(ellipse at 50% -10%, var(--wine-mid) 0%, transparent 60%),
+        linear-gradient(180deg,#1c0509,var(--wine-dark));
     z-index:-2;
 }
 
@@ -28,71 +40,88 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    padding:0 20px;
 }
 
 .subtitle{
-    color:#d8c28f;
-    letter-spacing:4px;
-    font-size:18px;
+    color:var(--gold);
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-size:14px;
+    font-weight:600;
 }
 
 .initials{
-
     font-family:'Great Vibes', cursive;
-    font-size:80px;
-    margin:20px 0;
-    color:white;
-
+    font-size:84px;
+    margin:14px 0 36px;
+    color:var(--cream);
+    text-shadow:0 2px 18px rgba(0,0,0,.35);
 }
 
 /* ======================= */
-/* Enveloppe */
+/* Enveloppe + dentelle + cachet */
 /* ======================= */
 
-.envelope{
+.envelope-wrap{
+    position:relative;
+    width:320px;
+}
 
+.lace{
+    position:absolute;
+    left:-24px;
+    right:-24px;
+    top:-18px;
+    height:60px;
+    background-image:
+        radial-gradient(circle at 10px 10px, var(--cream-dark) 9px, transparent 10px);
+    background-size:24px 24px;
+    background-repeat:repeat-x;
+    background-position:top center;
+    opacity:.55;
+    -webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 100%);
+    mask-image:linear-gradient(180deg,#000 40%,transparent 100%);
+    z-index:1;
+    pointer-events:none;
+}
+
+.envelope{
     position:relative;
     width:320px;
     height:210px;
     cursor:pointer;
-
+    z-index:2;
 }
 
 .envelope::before{
-
     content:'';
     position:absolute;
     width:100%;
     height:100%;
-    background:#efe3cf;
-    border-radius:8px;
-    box-shadow:0 20px 40px rgba(0,0,0,.45);
-
+    background:linear-gradient(160deg,var(--wine-mid),var(--wine));
+    border-radius:6px;
+    box-shadow:0 25px 50px rgba(0,0,0,.55);
 }
 
 .top{
-
     position:absolute;
     width:100%;
     height:100%;
-    background:#e5d3b8;
+    background:linear-gradient(160deg,#7a2337,var(--wine-mid));
 
     clip-path:polygon(0 0,100% 0,50% 60%);
     transform-origin:top;
     transition:1s;
 
     z-index:4;
-
 }
 
 .envelope.open .top{
-
     transform:rotateX(180deg);
-
 }
 
 .letter{
-
     position:absolute;
 
     left:15px;
@@ -101,7 +130,7 @@ body{
 
     height:170px;
 
-    background:white;
+    background:var(--cream);
 
     border-radius:6px;
 
@@ -109,38 +138,74 @@ body{
     align-items:center;
     justify-content:center;
 
-    color:#222;
+    color:var(--ink);
 
-    font-size:34px;
+    font-size:30px;
+    font-family:'Great Vibes', cursive;
+    letter-spacing:1px;
 
     transition:1s;
 
     z-index:2;
-
 }
 
 .envelope.open .letter{
-
     transform:translateY(-160px);
+}
 
+/* Cachet de cire */
+.seal{
+    position:absolute;
+    left:50%;
+    top:63px;
+    width:64px;
+    height:82px;
+    transform:translate(-50%,-50%);
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 28%, #fffaf0, var(--cream-dark) 65%, #d8c299 100%);
+    box-shadow:
+        inset 0 2px 3px rgba(255,255,255,.65),
+        inset 0 -4px 8px rgba(0,0,0,.2),
+        0 8px 16px rgba(0,0,0,.45);
+}
+
+.seal svg{
+    width:22px;
+    height:22px;
+    stroke:var(--wine);
+    fill:none;
+    stroke-width:1.3;
+    opacity:.85;
+}
+
+.seal .monogram{
+    font-family:'Great Vibes', cursive;
+    font-size:15px;
+    color:var(--wine);
+    margin-top:2px;
+    border-top:1px solid rgba(74,17,32,.4);
+    padding-top:2px;
+    letter-spacing:1px;
 }
 
 .click-text{
-
-    margin-top:40px;
-
-    color:#d8c28f;
-
+    margin-top:44px;
+    color:var(--gold);
+    letter-spacing:2px;
+    font-size:15px;
+    text-transform:uppercase;
     animation:blink 1.2s infinite;
-
 }
 
 @keyframes blink{
-
     50%{
-        opacity:.3;
+        opacity:.35;
     }
-
 }
 
 /* ======================= */
@@ -148,132 +213,155 @@ body{
 /* ======================= */
 
 .hidden{
-
     display:none;
-
 }
 
 #invitation{
-
     min-height:100vh;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     padding:60px 20px;
-
 }
 
 .card{
-
     width:100%;
-    max-width:700px;
+    max-width:480px;
+    min-height:640px;
 
-    background:white;
+    background-image: url('images/fond-fleurs.jpg');
+    background-size: cover;
+    background-position: center;
+    color:var(--cream);
 
-    color:#222;
+    border-radius:240px 240px 24px 24px;
+    border:1px solid var(--cream-dark);
 
-    border-radius:20px;
+    padding:70px 40px 45px;
 
-    padding:50px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
     text-align:center;
 
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    box-shadow:0 25px 70px rgba(0,0,0,.5);
 
     animation:fadeUp .9s;
+    position:relative;
+    overflow:hidden;
+}
 
+.card::before{
+    content:'';
+    position:absolute;
+    inset:14px;
+    border:1px solid var(--gold);
+    border-radius:230px 230px 14px 14px;
+    pointer-events:none;
+    opacity:.55;
+    z-index:2;
+}
+
+/* Voile sombre pour garder le texte lisible sur l'image */
+.card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: rgba(43,8,16,.4);
+    z-index:0;
+}
+
+.card > *{
+    position:relative;
+    z-index:1;
+}
+
+.card h4{
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:18px;
 }
 
 .card h1{
-
     font-family:'Great Vibes',cursive;
-
     font-size:60px;
-
+    color:var(--cream);
 }
 
 .card span{
-
-    font-size:42px;
-
+    font-size:36px;
     display:block;
-
-    margin:15px;
-
+    margin:10px;
+    color:var(--gold);
 }
 
 .message{
+    margin:30px 0 10px;
+    font-size:21px;
+    line-height:1.5;
+    color:var(--cream);
+}
 
-    margin:35px 0;
-
-    font-size:22px;
-
+.info{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid rgba(247,236,219,.3);
 }
 
 .info p{
-
-    margin:15px;
-
-    font-size:22px;
-
+    margin:12px;
+    font-size:21px;
+    color:var(--cream);
 }
 
+.info i{
+    color:var(--gold);
+    margin-right:8px;
+    width:18px;
+}
+
+/* ======================= */
+/* Boutons */
+/* ======================= */
+
 .buttons{
-
-    margin-top:40px;
-
+    margin-top:36px;
     display:flex;
-
     flex-direction:column;
-
     gap:15px;
-
+    width:100%;
 }
 
 .btn{
-
     text-decoration:none;
-
-    background:#b88b3d;
-
-    color:white;
-
-    padding:16px;
-
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--cream);
+    padding:14px;
     border-radius:40px;
-
     transition:.3s;
-
+    letter-spacing:.5px;
 }
 
 .btn:hover{
-
-    background:#8f6828;
-
+    filter:brightness(1.12);
     transform:scale(1.03);
-
 }
 
 @keyframes fadeUp{
-
     from{
-
         opacity:0;
         transform:translateY(50px);
-
     }
-
     to{
-
         opacity:1;
         transform:translateY(0);
-
     }
-
 }
 
 /* ======================= */
@@ -283,28 +371,29 @@ body{
 @media(max-width:768px){
 
     .initials{
-
         font-size:60px;
+    }
 
+    .envelope-wrap,
+    .envelope{
+        width:280px;
     }
 
     .envelope{
-
-        width:280px;
         height:180px;
-
     }
 
     .card{
+        min-height:560px;
+        border-radius:180px 180px 20px 20px;
+        padding:55px 26px 35px;
+    }
 
-        padding:30px;
-
+    .card::before{
+        border-radius:170px 170px 12px 12px;
     }
 
     .card h1{
-
         font-size:45px;
-
     }
-
 }
