@@ -25,9 +25,8 @@ body{
     position:fixed;
     inset:0;
     background:
-        radial-gradient(ellipse at 50% -10%, var(--wine-mid) 0%, transparent 60%),
-        linear-gradient(180deg,#1c0509,var(--wine-dark));
-    z-index:-2;
+    url('images/fond.jpg') center/cover no-repeat,
+    linear-gradient(160deg,var(--wine-dark),var(--wine));
 }
 
 /* ======================= */
