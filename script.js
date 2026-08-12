@@ -6,16 +6,10 @@ envelope.addEventListener("click", () => {
 
     if (envelope.classList.contains("open")) return;
 
+    // L'enveloppe s'éloigne en fondu (voir .envelope-wrap.open dans style.css)
     envelope.classList.add("open");
 
-    // Lorsque la lettre est sortie
-    setTimeout(() => {
-
-        envelope.classList.add("fade-out");
-
-    }, 1500);
-
-    // Puis on affiche l'invitation
+    // Le texte "Cliquez sur l'enveloppe" et le titre s'estompent en même temps
     setTimeout(() => {
 
         welcome.style.opacity = "0";
@@ -27,12 +21,13 @@ envelope.addEventListener("click", () => {
             invitation.classList.remove("hidden");
             invitation.style.display = "flex";
 
+            // Fondu enchaîné fluide vers l'image d'invitation
             requestAnimationFrame(() => {
                 invitation.classList.add("show");
             });
 
-        }, 600);
+        }, 700);
 
-    }, 2400);
+    }, 500);
 
 });
