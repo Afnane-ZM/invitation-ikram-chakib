@@ -149,7 +149,7 @@ body.scrollable{
     align-items:center;
     justify-content:center;
 
-    animation:fadeUp .9s;
+    animation:fadeUp .7s;
     position:relative;
 }
 
