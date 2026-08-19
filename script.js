@@ -21,6 +21,9 @@ envelope.addEventListener("click", () => {
             invitation.classList.remove("hidden");
             invitation.style.display = "flex";
 
+            // Réactive le défilement de la page pour voir toute la carte
+            document.body.classList.add("scrollable");
+
             // Fondu enchaîné fluide vers l'image d'invitation
             requestAnimationFrame(() => {
                 invitation.classList.add("show");
