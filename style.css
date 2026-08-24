@@ -50,7 +50,7 @@ body.scrollable{
     justify-content:center;
     align-items:center;
     padding:16px;
-    gap:clamp(4px, 1dvh, 12px);
+    gap:clamp 12px;
     overflow:hidden;
 }
 
@@ -76,8 +76,8 @@ body.scrollable{
 .envelope-wrap{
     position:relative;
     width:min(88vw, 440px);
-    flex:1;
-    min-height:0;
+    flex:0 1 auto;
+    min-height:55vh;
     display:flex;
     align-items:center;
     justify-content:center;
